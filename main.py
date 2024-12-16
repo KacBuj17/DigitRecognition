@@ -44,10 +44,10 @@ def main():
 
         cv2.imshow("Processed Image", processed_image_np)
 
-        prediction = predict(model, processed_image, device)
+        prediction, confidence_percentage = predict(model, processed_image, device)
 
-        cv2.putText(frame, f"Predicted Digit: {prediction}", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
-
+        cv2.putText(frame, f"Predicted Digit: {prediction}", (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
+        cv2.putText(frame, f"Confidence Percentage: {confidence_percentage}%", (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
         cv2.imshow("Camera", frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
