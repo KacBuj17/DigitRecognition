@@ -3,15 +3,7 @@ import cv2
 
 from load import load_model
 from data_preprocess import preprocess_image, tensor_to_numpy
-
-
-def predict(model, image, device):
-    image = image.to(device)
-
-    with torch.no_grad():
-        output = model(image)
-        _, predicted = torch.max(output, 1)
-        return predicted.item()
+from predict import predict
 
 
 def main():
@@ -48,7 +40,7 @@ def main():
 
         processed_image = preprocess_image(cropped_image)
 
-        processed_image_np = cv2.resize(tensor_to_numpy(processed_image), (280, 280))
+        processed_image_np = cv2.resize(tensor_to_numpy(processed_image), (300, 300))
 
         cv2.imshow("Processed Image", processed_image_np)
 
